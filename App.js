@@ -8,12 +8,10 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
+  Image
 } from 'react-native';
 
 import {
@@ -27,88 +25,43 @@ import {
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <View style={styles.headingView}>
+        <Text style={styles.heading}>Paracetamoe</Text>
+
+      </View>
+      <View style={{flex:1,flexDirection:"row"}}>
+        <View style={{width:"50%",height:"85%"}}>
+          <Image
+            style={{width: "100%", height: "100%"}}
+            source={require('./image/human.jpg')}
+          />
+        </View>
+        <View style={{width:"50%",height:"85%",marginTop:"60%",alignItems:"center"}}>
+          <Text style={styles.levelTextStyle}>Level 1</Text>
+          <Text style={styles.levelTextStyle}>Level 2</Text>
+          <Text style={styles.levelTextStyle}>Level 3</Text>
+          <Text style={styles.levelTextStyle}>Level 4</Text>
+          <Text style={styles.levelTextStyle}>Level 5</Text>
+        </View>
+      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  heading: {
+    transform: [{rotate:"-20deg"}],
+    fontSize: 20
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  headingView: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: "20%",
+    backgroundColor: "red"
   },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  levelTextStyle:{
+    fontSize:20
+  }
 });
 
 export default App;
