@@ -1,67 +1,36 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image
-} from 'react-native';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import LevelMenu from "./screens/LevelMenu"
+import TestScreen from "./screens/TestScreen"
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <View style={styles.headingView}>
-        <Text style={styles.heading}>Paracetamoe</Text>
+const Stack = createStackNavigator();
 
-      </View>
-      <View style={{flex:1,flexDirection:"row"}}>
-        <View style={{width:"50%",height:"85%"}}>
-          <Image
-            style={{width: "100%", height: "100%"}}
-            source={require('./image/human.jpg')}
-          />
-        </View>
-        <View style={{width:"50%",height:"85%",marginTop:"60%",alignItems:"center"}}>
-          <Text style={styles.levelTextStyle}>Level 1</Text>
-          <Text style={styles.levelTextStyle}>Level 2</Text>
-          <Text style={styles.levelTextStyle}>Level 3</Text>
-          <Text style={styles.levelTextStyle}>Level 4</Text>
-          <Text style={styles.levelTextStyle}>Level 5</Text>
-        </View>
-      </View>
-    </>
+export default function App(){
+  return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+        name="levelmenu" 
+        component={LevelMenu}
+        options={{
+          headerShown: false
+        }}
+        />
+        <Stack.Screen name="testscreen" component={TestScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  heading: {
-    transform: [{rotate:"-20deg"}],
-    fontSize: 20
-  },
-  headingView: {
-    alignItems: "center",
-    justifyContent: "center",
-    height: "20%",
-    backgroundColor: "red"
-  },
-  levelTextStyle:{
-    fontSize:20
-  }
-});
 
-export default App;
+
+
+
+
+
+
+
