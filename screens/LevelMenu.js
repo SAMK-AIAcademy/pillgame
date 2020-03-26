@@ -6,23 +6,20 @@ import {
   Image
 } from 'react-native';
 
-
-
-
+// Screen used to demonstrate New game screen (from New game "button") on the menu screen.
 export default function LevelMenu({navigation}){ 
         return(
         <>
         <View style={styles.headingView}>
-        <Text style={styles.heading}>Paracetamoe</Text>
+        <Text style={styles.heading}>Select level</Text>
         </View>
-
         <View style={{flex:1,flexDirection:"row"}}>
             <View style={{width:"50%",height:"85%"}}>
             <Image
                 style={{width: "100%", height: "100%"}}
                 source={require('../image/human.jpg')}
             />
-            </View>
+            </View >
             <View style={{width:"50%",height:"85%",marginTop:"60%",alignItems:"center"}}>
             <Text onPress={() => navigation.navigate("testscreen")}  style={styles.levelTextStyle}>Level 1</Text>
             <Text style={styles.levelTextStyle}>Level 2</Text>
@@ -35,17 +32,16 @@ export default function LevelMenu({navigation}){
         );
 }
 
-
+// Define the styles used in the screen.
 const styles = StyleSheet.create({
     heading: {
-      transform: [{rotate:"-20deg"}],
-      fontSize: 20
+      fontSize: 40
     },
     headingView: {
       alignItems: "center",
       justifyContent: "center",
       height: "20%",
-      backgroundColor: "red"
+      backgroundColor: "silver"
     },
     levelTextStyle:{
       fontSize:20
