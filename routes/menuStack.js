@@ -8,6 +8,8 @@ import ResumeGame from '../screens/Resume';
 import Options from '../screens/Options';
 import Level3Menu from '../screens/Level3Menu';
 import Level3 from '../screens/Level3';
+import Level1Info from '../screens/Level1Info';
+import Level1 from '../screens/Level1';
 
 // Available transitions to screens from menu screen.
 const screens = {
@@ -50,6 +52,20 @@ const screens = {
     screen: Level3,
     navigationOptions: {
       title: 'Level3',
+      headerShown: false,
+    },
+  },
+  Level1Info: {
+    screen: Level1Info,
+    navigationOptions: {
+      title: 'Level 1 - Ingestion',
+      headerShown: false,
+    },
+  },
+  Level1: {
+    screen: Level1,
+    navigationOptions: {
+      title: 'Ingestion',
       headerShown: false,
     },
   },

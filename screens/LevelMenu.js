@@ -6,7 +6,7 @@ export default function LevelMenu({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.headingView}>
-        <Text style={styles.heading}>Select level</Text>
+        <Text style={styles.heading}>Paracetamol</Text>
       </View>
       <View
         style={{
@@ -38,7 +38,8 @@ export default function LevelMenu({navigation}) {
               ...styles.levelTextStyle,
               backgroundColor: '#b0ffb0',
               color: '#00ff00',
-            }}>
+            }}
+            onPress={() => navigation.navigate('Level1Info')}>
             Level 1
           </Text>
           <Text
@@ -49,6 +50,7 @@ export default function LevelMenu({navigation}) {
             }}>
             Level 2
           </Text>
+
           <Text
             style={{
               ...styles.levelTextStyle,
