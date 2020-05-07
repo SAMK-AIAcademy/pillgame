@@ -22,16 +22,20 @@ export default function Menu({navigation}) {
   // Dispaly the contents of the menu screen.
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Pill game</Text>
-      <Text style={styles.resume} onPress={resumeHandler}>
-        Resume game
-      </Text>
-      <Text style={styles.newGame} onPress={newGameHandler}>
-        New game
-      </Text>
-      <Text style={styles.settings} onPress={optionsHandler}>
-        Options
-      </Text>
+      <View style={styles.headerContainer}>
+        <Text style={styles.heading}>Pill game</Text>
+      </View>
+      <View styel={styles.menu}>
+        <Text style={styles.resume} onPress={resumeHandler}>
+          Resume game
+        </Text>
+        <Text style={styles.newGame} onPress={newGameHandler}>
+          New game
+        </Text>
+        <Text style={styles.settings} onPress={optionsHandler}>
+          Options
+        </Text>
+      </View>
     </View>
   );
 }
@@ -40,41 +44,75 @@ export default function Menu({navigation}) {
 const styles = StyleSheet.create({
   container: {
     height: height,
-    position: 'relative',
-    backgroundColor: '#fff',
+    //position: 'relative',
+    backgroundColor: '#dfdfdf',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  headerContainer: {
+    borderWidth: 2,
+    transform: [{rotate: '-25deg'}],
+    marginTop: 30,
+    paddingHorizontal: 10,
+    borderRadius: 50,
+    backgroundColor: '#ffffff',
+  },
+  menu: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   resume: {
-    position: 'absolute',
-    top: height * 0.6,
     alignSelf: 'center',
-    margin: 0,
-    padding: 0,
-    backgroundColor: '#fff',
+    marginBottom: 10,
+    paddingHorizontal: 16,
+    backgroundColor: '#b0ffb0',
     fontSize: 40,
+    fontFamily: 'Baloo2',
+    borderRadius: 20,
+    color: '#00ff00',
+    textShadowRadius: 4,
+    textShadowColor: '#000',
+    borderWidth: 1,
+    textShadowOffset: {width: 0, height: 1},
   },
   newGame: {
-    position: 'absolute',
-    top: height * 0.7,
     alignSelf: 'center',
-    margin: 0,
-    padding: 0,
-    backgroundColor: '#fff',
+    marginBottom: 10,
+    paddingHorizontal: 16,
+    backgroundColor: '#ffb0b0',
     fontSize: 40,
+    fontFamily: 'Baloo2',
+    borderRadius: 20,
+    color: '#ff7070',
+    textShadowRadius: 4,
+    textShadowColor: '#000',
+    borderWidth: 1,
+    textShadowOffset: {width: 0, height: 1},
   },
   settings: {
-    position: 'absolute',
-    top: height * 0.8,
     alignSelf: 'center',
     margin: 0,
-    padding: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#b0b0ff',
+    fontWeight: '100',
     fontSize: 40,
+    fontFamily: 'Baloo2',
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    color: '#7070ff',
+    textShadowRadius: 4,
+    textShadowColor: '#000',
+    borderWidth: 1,
+    textShadowOffset: {width: 0, height: 1},
   },
   heading: {
-    position: 'absolute',
-    top: height * 0.2,
-    transform: [{rotate: '-30deg'}],
+    fontFamily: 'BungeeOutline',
+    color: '#dbdbdb',
     alignSelf: 'center',
     fontSize: 50,
+    textShadowRadius: 2,
+    textShadowOffset: {width: 0, height: 1},
+    textShadowColor: '#000000',
   },
 });
