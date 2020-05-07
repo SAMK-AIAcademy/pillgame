@@ -28,7 +28,11 @@ export default function LevelMenu({navigation}) {
             Level 1
           </Text>
           <Text style={styles.levelTextStyle}>Level 2</Text>
-          <Text style={styles.levelTextStyle}>Level 3</Text>
+          <Text
+            style={styles.levelTextStyle}
+            onPress={() => navigation.navigate('Level3Menu')}>
+            Level 3
+          </Text>
           <Text style={styles.levelTextStyle}>Level 4</Text>
           <Text style={styles.levelTextStyle}>Level 5</Text>
         </View>
