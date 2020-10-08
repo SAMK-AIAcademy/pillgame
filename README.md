@@ -4,7 +4,7 @@ Learning game about medicine effects.
 
 ## DEVELOPMENT
 
-### 1. Install React Native dependecies as instructed [here](https://reactnative.dev/docs/getting-started).
+### 1. Install React Native dependecies as instructed [here](https://reactnative.dev/docs/0.61/getting-started).
 
 - Use React Native CLI Quickstart **(NO EXPO CLI!)**
 - Choose your develompent OS
