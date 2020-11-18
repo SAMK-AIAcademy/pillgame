@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import {TouchableHighlight} from 'react-native';
 import {Image} from 'react-native';
-import {Text, View, Dimensions} from 'react-native';
+import {View, Dimensions} from 'react-native';
 
-const Piece = ({marginTop, marginLeft}) => {
+const Piece = ({marginTop, marginLeft, highlight}) => {
+  const borderColor = highlight ? 'red' : 'black';
   return (
-    <View style={styles.container}>
+    <View style={{borderColor, ...styles.container}}>
       <Image
         style={{marginTop, marginLeft, ...styles.image}}
         source={{
@@ -23,7 +25,6 @@ const styles = {
     width: pieceSize,
     height: pieceSize,
     overflow: 'hidden',
-    borderColor: 'black',
     borderWidth: 1,
   },
   image: {
@@ -74,18 +75,44 @@ const shuffle = (pieces) => {
   return pieces;
 };
 
+const swap = (first, second, pieces) => {
+  let tmp = pieces[first];
+  pieces[first] = pieces[second];
+  pieces[second] = tmp;
+
+  return pieces;
+};
+
 export default function Jigsaw({image}) {
   const [puzzle, setPuzzle] = useState([]);
+  const [pressed, setPressed] = useState(null);
 
   useEffect(() => {
     const newPuzzle = createPuzzle(image);
     setPuzzle(shuffle(newPuzzle));
   }, []);
 
+  const pressedPiece = (index) => {
+    if (pressed != null) {
+      setPuzzle(swap(pressed, index, puzzle));
+      setPressed(null);
+    } else {
+      setPressed(index);
+    }
+  };
+
   return (
     <View style={styles.puzzle}>
-      {puzzle.map((piece) => {
-        return <Piece {...piece} />;
+      {puzzle.map((piece, i) => {
+        return (
+          <TouchableHighlight
+            key={piece.key}
+            activeOpacity={0.6}
+            underlayColor="#DDDDDD"
+            onPress={() => pressedPiece(i)}>
+            <Piece {...piece} highlight={i == pressed} />
+          </TouchableHighlight>
+        );
       })}
     </View>
   );
