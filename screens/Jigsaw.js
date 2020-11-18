@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {Image} from 'react-native';
 import {View, Dimensions} from 'react-native';
 
-const Piece = () => {
+const Piece = ({marginTop, marginLeft}) => {
   return (
     <View style={styles.container}>
       <Image
-        style={styles.image}
+        style={{marginTop, marginLeft, ...styles.image}}
         source={{
           uri:
             'https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png',
@@ -23,12 +23,15 @@ const styles = {
     width: pieceSize,
     height: pieceSize,
     overflow: 'hidden',
+    borderColor: 'black',
+    borderWidth: 1,
   },
   image: {
-    width: 190,
-    height: 390,
-    marginTop: -200,
-    marginLeft: -100,
+    width: windowWidth,
+    height: windowWidth,
+    resizeMode: 'contain',
+    //marginTop: -200,
+    //marginLeft: -100,
   },
   puzzle: {
     width: '100%',
@@ -39,13 +42,25 @@ const styles = {
 export default function Jigsaw({image}) {
   return (
     <View style={styles.puzzle}>
-      <Piece />
-      <Piece />
-      <Piece />
-      <Piece />
-      <Piece />
-      <Piece />
-      <Piece />
+      <Piece marginLeft={0} marginTop={0} />
+      <Piece marginLeft={-pieceSize} marginTop={0} />
+      <Piece marginLeft={-pieceSize * 2} marginTop={0} />
+      <Piece marginLeft={-pieceSize * 3} marginTop={0} />
+
+      <Piece marginLeft={0} marginTop={-pieceSize} />
+      <Piece marginLeft={-pieceSize} marginTop={-pieceSize} />
+      <Piece marginLeft={-pieceSize * 2} marginTop={-pieceSize} />
+      <Piece marginLeft={-pieceSize * 3} marginTop={-pieceSize} />
+
+      <Piece marginLeft={0} marginTop={-pieceSize * 2} />
+      <Piece marginLeft={-pieceSize} marginTop={-pieceSize * 2} />
+      <Piece marginLeft={-pieceSize * 2} marginTop={-pieceSize * 2} />
+      <Piece marginLeft={-pieceSize * 3} marginTop={-pieceSize * 2} />
+
+      <Piece marginLeft={0} marginTop={-pieceSize * 3} />
+      <Piece marginLeft={-pieceSize} marginTop={-pieceSize * 3} />
+      <Piece marginLeft={-pieceSize * 2} marginTop={-pieceSize * 3} />
+      <Piece marginLeft={-pieceSize * 3} marginTop={-pieceSize * 3} />
     </View>
   );
 }
