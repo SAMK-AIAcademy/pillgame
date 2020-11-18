@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image} from 'react-native';
-import {View, Dimensions} from 'react-native';
+import {Text, View, Dimensions} from 'react-native';
 
 const Piece = ({marginTop, marginLeft}) => {
   return (
@@ -30,8 +30,6 @@ const styles = {
     width: windowWidth,
     height: windowWidth,
     resizeMode: 'contain',
-    //marginTop: -200,
-    //marginLeft: -100,
   },
   puzzle: {
     width: '100%',
@@ -39,28 +37,32 @@ const styles = {
     flexWrap: 'wrap',
   },
 };
+
+const createPuzzle = (image) => {
+  const pieces = [];
+  let key = 0;
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      pieces.push({
+        key: key++,
+        image,
+        marginLeft: -pieceSize * j,
+        marginTop: -pieceSize * i,
+      });
+    }
+  }
+  return pieces;
+};
+
 export default function Jigsaw({image}) {
+  const [puzzle, setPuzzle] = useState(createPuzzle(image));
+
+
   return (
     <View style={styles.puzzle}>
-      <Piece marginLeft={0} marginTop={0} />
-      <Piece marginLeft={-pieceSize} marginTop={0} />
-      <Piece marginLeft={-pieceSize * 2} marginTop={0} />
-      <Piece marginLeft={-pieceSize * 3} marginTop={0} />
-
-      <Piece marginLeft={0} marginTop={-pieceSize} />
-      <Piece marginLeft={-pieceSize} marginTop={-pieceSize} />
-      <Piece marginLeft={-pieceSize * 2} marginTop={-pieceSize} />
-      <Piece marginLeft={-pieceSize * 3} marginTop={-pieceSize} />
-
-      <Piece marginLeft={0} marginTop={-pieceSize * 2} />
-      <Piece marginLeft={-pieceSize} marginTop={-pieceSize * 2} />
-      <Piece marginLeft={-pieceSize * 2} marginTop={-pieceSize * 2} />
-      <Piece marginLeft={-pieceSize * 3} marginTop={-pieceSize * 2} />
-
-      <Piece marginLeft={0} marginTop={-pieceSize * 3} />
-      <Piece marginLeft={-pieceSize} marginTop={-pieceSize * 3} />
-      <Piece marginLeft={-pieceSize * 2} marginTop={-pieceSize * 3} />
-      <Piece marginLeft={-pieceSize * 3} marginTop={-pieceSize * 3} />
+      {puzzle.map((piece) => {
+        return <Piece {...piece} />;
+      })}
     </View>
   );
 }
