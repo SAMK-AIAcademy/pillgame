@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {TouchableHighlight} from 'react-native';
 import {Image} from 'react-native';
-import {View, Dimensions} from 'react-native';
+import {Text, View, Dimensions} from 'react-native';
 
-const Piece = ({marginTop, marginLeft, highlight}) => {
+const Piece = ({marginTop, marginLeft, highlight, id, index}) => {
   const borderColor = highlight ? 'red' : 'black';
   return (
     <View style={{borderColor, ...styles.container}}>
@@ -30,7 +30,7 @@ const styles = {
   image: {
     width: windowWidth,
     height: windowWidth,
-    resizeMode: 'contain',
+    //resizeMode: 'contain',
   },
   puzzle: {
     width: '100%',
@@ -45,11 +45,12 @@ const createPuzzle = (image) => {
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
       pieces.push({
-        key: key++,
+        id: key,
         image,
         marginLeft: -pieceSize * j,
         marginTop: -pieceSize * i,
       });
+      key++;
     }
   }
   return pieces;
@@ -80,12 +81,24 @@ const swap = (first, second, pieces) => {
   pieces[first] = pieces[second];
   pieces[second] = tmp;
 
-  return pieces;
+  return [...pieces];
+};
+
+const checkPuzzle = (puzzle) => {
+  for (let i = 0; i < puzzle.length; i++) {
+    if (i !== puzzle[i].id) return false;
+  }
+  return true;
 };
 
 export default function Jigsaw({image}) {
   const [puzzle, setPuzzle] = useState([]);
   const [pressed, setPressed] = useState(null);
+  const [finished, setFinished] = useState(false);
+
+  useEffect(() => {
+    setFinished(checkPuzzle(puzzle));
+  }, [puzzle]);
 
   useEffect(() => {
     const newPuzzle = createPuzzle(image);
@@ -102,18 +115,25 @@ export default function Jigsaw({image}) {
   };
 
   return (
-    <View style={styles.puzzle}>
-      {puzzle.map((piece, i) => {
-        return (
-          <TouchableHighlight
-            key={piece.key}
-            activeOpacity={0.6}
-            underlayColor="#DDDDDD"
-            onPress={() => pressedPiece(i)}>
-            <Piece {...piece} highlight={i == pressed} />
-          </TouchableHighlight>
-        );
-      })}
+    <View>
+      <View style={styles.puzzle}>
+        {puzzle.map((piece, i) => {
+          return (
+            <TouchableHighlight
+              key={piece.id}
+              activeOpacity={0.6}
+              underlayColor="#DDDDDD"
+              onPress={() => pressedPiece(i)}>
+              <Piece {...piece} highlight={i == pressed} index={i} />
+            </TouchableHighlight>
+          );
+        })}
+      </View>
+      {finished ? (
+        <Text style={{elevation: 2}}>You WIN!</Text>
+      ) : (
+        <Text>No WIN</Text>
+      )}
     </View>
   );
 }
