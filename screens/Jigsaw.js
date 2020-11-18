@@ -54,9 +54,33 @@ const createPuzzle = (image) => {
   return pieces;
 };
 
-export default function Jigsaw({image}) {
-  const [puzzle, setPuzzle] = useState(createPuzzle(image));
+const shuffle = (pieces) => {
+  let currentIndex = pieces.length;
+  let tmp;
+  let randomIndex;
 
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    tmp = pieces[currentIndex];
+    pieces[currentIndex] = pieces[randomIndex];
+    pieces[randomIndex] = tmp;
+  }
+
+  return pieces;
+};
+
+export default function Jigsaw({image}) {
+  const [puzzle, setPuzzle] = useState([]);
+
+  useEffect(() => {
+    const newPuzzle = createPuzzle(image);
+    setPuzzle(shuffle(newPuzzle));
+  }, []);
 
   return (
     <View style={styles.puzzle}>
