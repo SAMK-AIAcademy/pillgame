@@ -28,12 +28,15 @@ const getValue = async (key) => {
 
 const StoreContext = createContext([{}, () => {}]);
 
-const storeInitialized = false;
+let storeInitialized = false;
 
 const StoreProvider = ({children}) => {
   const [state, setState] = useState({});
   if (!storeInitialized) {
-    getValue('state').then((value) => setState(value));
+    getValue('state').then((value) => {
+      setState(value);
+      storeInitialized = true;
+    });
   } else {
     setValue(state, 'state').then(() => console.log(state));
   }
