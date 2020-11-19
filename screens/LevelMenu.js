@@ -47,7 +47,8 @@ export default function LevelMenu({navigation}) {
               ...styles.levelTextStyle,
               backgroundColor: '#b0ffb0',
               color: '#00ff00',
-            }}>
+            }}
+            onPress={() => navigation.navigate('Level2Menu')}>
             Level 2
           </Text>
 
