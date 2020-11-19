@@ -37,23 +37,6 @@ export default function Menu({navigation}) {
           Options
         </Text>
       </View>
-      {/* <RNPickerSelect
-            style={{
-              placeholder: {
-                backgroundColor: 'red'
-              }
-            }}
-            onValueChange={(value) => console.log(value)}
-            placeholder={{
-              label: 'Valitse vastaus',
-              value: null,
-            }}
-            items={[
-                { label: 'vastaus 1', value: 'vastaus1' },
-                { label: 'vastaus 2', value: 'vastaus2' },
-                { label: 'vastaus 3', value: 'vastaus3' },
-            ]}
-        /> */}
     </View>
   );
 }
