@@ -1,7 +1,6 @@
 import React from 'react';
 import {Dimensions} from 'react-native';
 import {StyleSheet, View, Text} from 'react-native';
-// import RNPickerSelect from 'react-native-picker-select';
 
 // Get the full height of the used screen for later use.
 var height = Dimensions.get('window').height;
