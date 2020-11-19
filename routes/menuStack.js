@@ -8,6 +8,8 @@ import ResumeGame from '../screens/Resume';
 import Options from '../screens/Options';
 import Level3Menu from '../screens/Level3Menu';
 import Level3 from '../screens/Level3';
+import Level2 from '../screens/Level2';
+import Level2Menu from '../screens/Level2Menu';
 import Level1Info from '../screens/Level1Info';
 import Level1 from '../screens/Level1';
 
@@ -52,6 +54,20 @@ const screens = {
     screen: Level3,
     navigationOptions: {
       title: 'Level3',
+      headerShown: false,
+    },
+  },
+  Level2Menu: {
+    screen: Level2Menu,
+    navigationOptions: {
+      title: 'Level 2 - Quiz',
+      headerShown: false,
+    },
+  },
+  Level2: {
+    screen: Level2,
+    navigationOptions: {
+      title: 'Quiz',
       headerShown: false,
     },
   },
